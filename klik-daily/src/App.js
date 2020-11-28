@@ -16,7 +16,7 @@ function App() {
   const [today,setToday] = useState('');
 
   useEffect(() => {
-    axios('http://dummy.restapiexample.com/api/v1/employees')  // sekiranya error, boleh pakai http://localhost:3000/users
+    axios('http://dummy.restapiexample.com/api/v1/employees')  // sekiranya error, boleh pakai http://localhost:3000/users // http://dummy.restapiexample.com/api/v1/employees
     .then(({data}) => {
       setNameOptions(data)
     })
@@ -33,14 +33,14 @@ function App() {
   const optionName = () => {
     let names = []
     for(let i = 0 ; i<nameOptions.length ; i++) {
-      names.push(<option> {nameOptions[i]['employee_name']} </option>)
+      names.push(<option key={i} > {nameOptions[i]['employee_name']} </option>)
     }
     return names;
   }
 
   //Products
   const [products,setProducts] = useState([{
-      name:'Product Name',
+      name:'',
       unit:'',
       quantity:0,
       price:0,    
@@ -60,13 +60,13 @@ function App() {
 
   const optionProduct = () => {
     let theProducts = [];
-    productOptions.forEach(el => theProducts.push(<option> {el['product_name']} </option>))
+    productOptions.forEach((el,i) => theProducts.push(<option key={i} > {el['product_name']} </option>))
     return theProducts
   };
 
   const countTotal = () => {
     let total = 0;
-    products.map((el,i) => {
+    products.forEach((el) => {
       total += (el.price*el.quantity)
     })
     return total.toLocaleString();
@@ -82,14 +82,14 @@ function App() {
   const handleAddItem = () => {
     const clonedProducts = [];
     products.map((el,i) => clonedProducts.push(el));
-    clonedProducts.push({ name:'Product Name', unit:'', quantity:0, price:0 })
+    clonedProducts.push({ name:'', unit:'', quantity:0, price:0 })
     setProducts(clonedProducts);
   };
 
   const checkForm = () => {
     let flag = true;
     products.forEach((el) => {
-      if(el.name === 'Product Name' || el.unit === '' || el.quantity === 0 ) {
+      if(el.name === '' || el.unit === '' || el.quantity === 0 ) {
         flag = false;
       }
     })
@@ -122,7 +122,7 @@ function App() {
             <Container className="mb-3" >
               <Form.Label> Name</Form.Label> <Form.Label className="required">*</Form.Label>
               <Form.Control id="name" as="select" value={name} onChange={(e) => setName(e.target.value)} >
-                <option selected="selected" value='' disabled > Name </option>
+                <option defaultValue value='' disabled > Name </option>
                 {optionName()}
               </Form.Control>
             </Container>
@@ -136,7 +136,7 @@ function App() {
                   <option> DC Cikarang </option>
                 </> :
                 <>
-                <option selected > No data available </option>
+                <option defaultValue > No data available </option>
                 </>
               }
               </Form.Control>
@@ -148,7 +148,7 @@ function App() {
                     <Container className="pl-0 ml-0">
                       <Form.Label className="mb-0" > Payment Type</Form.Label> <Form.Label className="required">*</Form.Label>
                       <Form.Control as="select" value={paymentType} onChange={(e) => setPaymentType(e.target.value)} required >
-                        <option value='' selected disabled> Payment Type </option>
+                        <option value='' defaultValue disabled> Payment Type </option>
                         <option> Cash H+1 </option>
                         <option> Cash H+3 </option>
                         <option> Cash H+7 </option>
