@@ -164,6 +164,7 @@ function App() {
                       value={expiredDate}
                       placeholder="Expired Date"
                       min={today}
+                      required
                       onChange={(e) => setExpiredDate(e.target.value)}
                       />
                     </Container>

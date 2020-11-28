@@ -57,14 +57,14 @@ const Product = ({ i , props , selectProduct , optionProduct , products , handle
               <Container className="d-flex justify-content-between">
                 <Container>
                   <Form.Label> Product </Form.Label> <Form.Label className="required">*</Form.Label>
-                  <Form.Control as="select" value={props.name} onChange={(e) => handleChange(e,'name')} style={{width:'400px'}} >
+                  <Form.Control as="select" value={props.name} onChange={(e) => handleChange(e,'name')} style={{width:'400px'}} required >
                     <option disabled> Product Name </option>
                     {optionProduct()}
                   </Form.Control>
                 </Container>
                 <Container>
                   <Form.Label> Unit </Form.Label> <Form.Label className="required">*</Form.Label>
-                    <Form.Control as="select" value={props.unit} onChange={(e) => handleUnitChange(e)}>
+                    <Form.Control as="select" value={props.unit} onChange={(e) => handleUnitChange(e)} required>
                       {(props.name === 'Product Name') ? <> <option> Unit </option> </> :
                         <> <option value='' disabled> Choose One...  </option>  {unitOptions()} </>              
                       }
