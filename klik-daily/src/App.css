@@ -1,0 +1,55 @@
+.total-container {
+  font-size:2rem;
+}
+
+#total-label {
+  margin-left:700px
+}
+
+#count {
+  margin-right:0
+}
+
+#new-item{
+  margin-left:280px
+}
+
+#cover {
+  background-color:#fafafa;
+  height:100%
+}
+
+#notes {
+  width:600px;
+  height:100px
+}
+
+#heading-product{
+  margin-right:125px
+}
+
+#detail {
+  margin-right:200px
+}
+
+#name {
+  width:80%;
+}
+
+#distribution {
+  width:47%;
+}
+
+.required {
+  color:red
+}
+
+.net-price {
+  border-top-style:solid;
+  width:48%;
+  margin-left:380px
+}
+
+.price {
+  width:45%;
+}
